@@ -11,8 +11,8 @@ var HEIGHT = 6;
 var board = []; // array of rows, each row is array of cells  (board[y][x])
 var currPlayer;
 
-/** Start New Game
- * 
+/** 
+ * Init the game
  */
 function initGame() {
   makeBoard();
@@ -27,6 +27,9 @@ function initGame() {
   })
 }
 
+/**
+ * Start the game
+ */
 function startNewGame() {
   const startBtn = document.querySelector(`#start-game-btn`);
   startBtn.style.display = 'none';
@@ -37,6 +40,9 @@ function startNewGame() {
   initGameBoard();
 }
 
+/**
+ * Reset the game
+ */
 function resetGame() {
   // remove the winner message;
   const winnerContainer = document.querySelector('#winner-message');
@@ -54,6 +60,7 @@ function resetGame() {
     td.innerHTML = '';
   }
 
+  // Generate random starting player
   currPlayer = Math.round(Math.random(1,2) + 1);
   setCurrentPlayer(currPlayer);
 
@@ -61,6 +68,9 @@ function resetGame() {
 
 }
 
+/**
+ * Init the game board - add event listener to the top column to handle dropping of game pieces
+ */
 function initGameBoard() {
 
   const htmlBoard = document.getElementById('board');
@@ -79,27 +89,36 @@ function initGameBoard() {
 
 }
 
+/**
+ * Disable the game board - remove the event listener so that user can not continue playing
+ */
 function disableGameBoard() {
+
   const htmlBoard = document.getElementById('board');
   htmlBoard.classList.remove('active');
 
   const tds = document.querySelectorAll('#column-top td');
   top.removeEventListener("click", handleClick);
 
+  // clear the game pieces from the board
   for(let td of tds) {
     td.innerHTML = '';
   }
 
+  // Turn off the turn indicators
   let turnIndicators = document.querySelectorAll('.turn-indicator');
   for(let turnIndicator of turnIndicators) {
     turnIndicator.classList.remove('active');
   }
-
   currPlayer = '';
 
 }
 
+/**
+ * Set the current player's turn
+ */
 function setCurrentPlayer(player) {
+  
   const topCol = document.querySelector('#column-top');
   if(player === 1) {
     document.querySelector('#player2').classList.remove('active');
@@ -187,7 +206,10 @@ function findSpotForCol(x) {
   }
 }
 
-
+/**
+ * Add the disable style to the thead td's to indicate that you can not add a piece to that column
+ * @param {*} x 
+ */
 function disableColumn(x) {
   let column = document.getElementById(x);
   column.classList.add('disabled');
@@ -207,6 +229,10 @@ function placeInTable(y, x) {
   }
 }
 
+/**
+ * return's the current players game piece
+ * @param {*} player 
+ */
 function gamePiece(player) {
   const piece = document.createElement('div');
   piece.classList.add('piece', `player-${player}`);
@@ -224,6 +250,10 @@ function endGame(msg) {
   disableGameBoard();
 }
 
+/**
+ * Show the winner message at the end of the game
+ * @param {*} winner 
+ */
 function showWinner(winner) {
   const winnerContainer = document.querySelector('#winner-message');
   const winnerMessage = document.querySelector('#winner-message #winner-message-text')
