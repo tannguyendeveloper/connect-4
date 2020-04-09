@@ -41,7 +41,7 @@ h1 {
   display: flex;
   flex-wrap: nowrap;
   margin: 0 2em;
-  opacity: .4;
+  opacity: .3;
   transition-duration: 200ms;
 }
 
