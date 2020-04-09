@@ -1,0 +1,45 @@
+<!doctype html>
+<head>
+  <title>Connect 4</title>
+  <link href="connect4.css" rel="stylesheet">
+</head>
+<body>
+  <div id="game-wrapper">
+    <div>
+      <h1>Connect4</h1>
+      <div id="game">
+        
+        <div id="player1" class="turn-indicator">
+          <h2 class="player-title">Player</h2>
+          <div class="piece player-1" class="active">
+            <div class="bevel">
+              <h2>1</h2>
+            </div>
+          </div>
+        </div>
+      
+        <div id="board-container">
+          <table id="board"></table>
+          <button id="start-game-btn" class="btn">Start a New Game!</button>
+          <div id="winner-message">
+            <div id="winner-message-text"></div>
+            <button id="reset-game-btn" class="btn">Play Again!</button>
+          </div>
+        </div>
+      
+        <div id="player2" class="turn-indicator">
+          <h2 class="player-title">Player</h2>
+          <div class="piece player-2">
+            <div class="bevel">
+              <h2>2</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="connect4.js"></script>
+
+</body>
+</html>

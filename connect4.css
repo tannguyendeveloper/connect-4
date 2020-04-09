@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
+
+body {
+  background-image: url('./images/bkg.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 0 0;
+  margin: 0 0;
+  overflow: hidden;
+}
+
+#game-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* game board table */
+h1 {
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+  margin: 0 0;
+  font-size: 3em;
+  color: #ffffff;
+  width: 100%;
+  text-shadow: 3px 3px #000000;
+}
+
+.piece h2 {
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+  font-size: 3em;
+  margin: 0 auto;
+  color: rgba(255,255,255,1);
+  text-shadow: 1px 1px 0px rgba(0,0,0,.5)
+}
+
+.turn-indicator {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 2em;
+  opacity: .4;
+  transition-duration: 200ms;
+}
+
+.turn-indicator h2.player-title {
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+  margin: 0 0;
+  color: #ffffff;
+}
+
+.turn-indicator .piece{
+  position: relative;
+}
+
+.turn-indicator.active {
+  opacity: 1;
+}
+
+.turn-indicator.active .player-title {
+  text-shadow: 0px 0px 5px black;
+}
+
+.turn-indicator.active .piece{
+  box-shadow: 0px 0px 10px black;
+}
+
+#game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#board-container {
+  display: block;
+  position: relative;
+  width: auto;
+  border-collapse: collapse;
+}
+
+#board {
+  display: block;
+  box-sizing: border-box;
+  width: auto;
+  opacity: .25;
+  transition-duration: 250ms;
+}
+
+#board.active {
+  opacity: 1;
+}
+
+#board thead {
+  display: table;
+  width: 100%;
+  padding: .25em .5em 0 .5em;
+  box-sizing: border-box;
+  margin: 0 0;
+}
+
+#board tbody {
+  width: 100%;
+  display: table;
+  background: linear-gradient(180deg, rgba(255,185,30,1) 0%, rgba(194,97,0,1) 100%);
+  padding: .5em;
+  margin: 0 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#board td {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  position: relative;
+  background-color: #ffffff;
+  box-shadow: inset 2px 2px 2px rgba(0,0,0,.35);
+}
+
+/* pieces are div within game table cells: draw as colored circles */
+#player1, #player2 {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  display: block;
+}
+
+.piece {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0;
+  padding: 0 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  transition-duration: 200ms;
+  top: 0;
+  left: 0;
+}
+
+.translate {
+  transform: translateY(-350px);
+}
+
+.origin {
+  transform: translateY(0);
+}
+
+.player-1 {
+  background: linear-gradient(156deg, rgba(218,0,0,1) 0%, rgba(83,0,0,1) 100%);
+}
+
+.bevel{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+  border-radius: 100%;
+  box-shadow: inset -3px -3px 15px rgba(0,0,0,.55);
+}
+
+.player-2 {
+  background: linear-gradient(156deg, rgba(83,83,83,0.9976365546218487) 0%, rgba(52,52,52,1) 100%);
+}
+
+/* TODO: make pieces red/blue,  depending on player 1/2 piece */
+
+/* column-top is table row of clickable areas for each column */
+
+#column-top td {
+  border: dashed 1px black;
+}
+
+#column-top td.disabled .piece {
+  opacity: 0;
+  cursor: not-allowed;
+}
+
+#column-top .piece {
+  cursor: pointer;
+  opacity: .2;
+}
+
+#column-top.player-1 .piece {
+  background: linear-gradient(156deg, rgba(218,0,0,1) 0%, rgba(83,0,0,1) 100%);
+}
+
+#column-top.player-2 .piece {
+  background: linear-gradient(156deg, rgba(83,83,83,0.9976365546218487) 0%, rgba(52,52,52,1) 100%);
+}
+
+#column-top .piece:hover {
+  opacity: 1;
+}
+
+button.btn {
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+}
+
+button#start-game-btn {
+  position: absolute;
+  display: inline-block;
+  font-family: 'Nunito', sans-serif;
+  transform: translate(-50%, -50%);
+  margin: -50% -50% 50% 50%;
+  font-size: 2em;
+  background: linear-gradient(156deg, rgba(218,0,0,1) 0%, rgba(83,0,0,1) 100%);
+  color: #ffffff;
+  padding: .25em .75em;
+  border-radius: 2em;
+  transition-duration: 100ms;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.5);
+}
+
+button#reset-game-btn {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(156deg, rgba(218,0,0,1) 0%, rgba(83,0,0,1) 100%);
+  color: #ffffff;
+  padding: .25em .75em;
+  font-size: 1.5em;
+  transition-duration: 100ms;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.5);
+  font-size: 2em;
+  border-radius: 2em;
+}
+
+button#start-game-btn:hover, button#reset-game-btn:hover {
+  color: rgba(255,185,30,1);
+  box-shadow: 3px 3px 3px rgba(0,0,0,.5);
+}
+
+#winner-message {
+  width: 100%;
+  transition-duration: 250ms;
+  position: absolute;
+  display: none;
+}
+
+#winner-message h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 2em;
+  color: #ffffff;
+  text-shadow: 2px 2px 0px #000000;
+  margin-bottom: 0;
+}
+
+#winner-message.active {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
